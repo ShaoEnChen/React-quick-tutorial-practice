@@ -10,17 +10,19 @@ class TodoItem extends React.Component {
 	}
 	
 	toggleEditMode() {
-		this.setState({ editable: !this.state.editable });
+		this.setState(
+			{ editable: !this.state.editable }
+		);
 	}
 	
 	renderEditMode() {
 		return (
 			<InputField
 				autoFocus={true}
-				inputFieldPlaceholder={this.props.title}
+				placeholder={this.props.title}
 				onBlur={this.toggleEditMode}
 				onKeyDown={(e) => {
-					if(e.keyCode === 27) {
+					if(e.keyCode === 27) {	// ESC
 						e.preventDefault();
 						this.toggleEditMode();
 					}
@@ -31,7 +33,8 @@ class TodoItem extends React.Component {
 	renderViewMode() {
 		const {
 			title,
-			isCompleted
+			isCompleted,
+			onDelete
 		} = this.props;
 		
 		return (
@@ -40,7 +43,7 @@ class TodoItem extends React.Component {
 				<span onClick={this.toggleEditMode}>
 					{title}
 				</span>
-				<button>
+				<button onClick={() => { onDelete && onDelete() }}>
 					x
 				</button>
 			</li>

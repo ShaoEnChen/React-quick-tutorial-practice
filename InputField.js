@@ -7,7 +7,7 @@ class InputField extends React.Component {
 }
 
 InputField.defaultProps = {
-	inputFieldPlaceholder: "新增待辦事項"
-}
+	placeholder: "新增待辦事項"
+};
 
 window.App.InputField = InputField;
